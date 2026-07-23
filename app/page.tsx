@@ -1,71 +1,87 @@
 import Link from 'next/link';
 import FaqSection from '@/components/FaqSection';
 
+const tools = [
+  { name: 'Video Downloader', desc: 'YouTube, TikTok, Instagram, Spotify', href: '/tools/video-downloader' },
+  { name: 'Image Converter', desc: 'PNG, JPEG, WebP', href: '/tools/image-converter' },
+  { name: 'Image to URL', desc: 'Upload & dapatkan link', href: '/tools/image-to-url' },
+  { name: 'File to PDF', desc: 'Gambar, teks, HTML ke PDF', href: '/tools/file-to-pdf' },
+  { name: 'QR Code', desc: 'Buat QR dari teks/URL', href: '/tools/qr-code' },
+  { name: 'BG Remover', desc: 'Hapus latar gambar', href: '/tools/bg-remover' },
+  { name: 'Image Compressor', desc: 'Kompres tanpa loss kualitas', href: '/tools/image-compressor' },
+];
+
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[#09090b]">
       {/* Nav */}
-      <nav className="border-b border-[rgba(255,255,255,0.06)] bg-[rgba(3,0,20,0.8)] backdrop-blur-md sticky top-0 z-10">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 h-14 flex items-center">
-          <Link href="/" className="flex items-center gap-3">
-            <img
-              src="https://cdn.phototourl.com/free/2026-07-13-d218457a-17e3-4daf-ab30-053cd0059d1d.jpg"
-              alt="Profile"
-              className="logo-img"
-            />
-            <span className="text-white font-semibold text-sm tracking-tight">ToolBox</span>
+      <nav className="border-b border-white/5 sticky top-0 z-10 bg-[#09090b]/80 backdrop-blur-sm">
+        <div className="max-w-3xl mx-auto px-5 h-12 flex items-center">
+          <Link href="/" className="flex items-center gap-2.5">
+            <div className="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center">
+              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6v6m4.5-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <span className="text-white font-medium text-sm">ToolBox</span>
           </Link>
         </div>
       </nav>
 
-      {/* Hero */}
-      <section className="relative overflow-hidden hero-gradient">
-        {/* Background blobs */}
-        <div className="blob blob-1" />
-        <div className="blob blob-2" />
-        <div className="blob blob-3" />
+      {/* Hero — left-aligned, no gradient, no blobs */}
+      <section className="max-w-3xl mx-auto px-5 pt-20 sm:pt-28 pb-16">
+        <h1 className="text-white text-4xl sm:text-5xl font-bold tracking-tight leading-[1.1]">
+          Download video.
+          <br />
+          Convert file.
+          <br />
+          <span className="text-zinc-500">Free.</span>
+        </h1>
+        <p className="text-zinc-400 text-base sm:text-lg mt-5 max-w-lg leading-relaxed">
+          YouTube, TikTok, Instagram, Spotify. Convert images, compress, create QR codes. All in your browser, no signup.
+        </p>
+        <Link
+          href="/tools"
+          className="inline-flex items-center gap-2 mt-8 px-5 py-2.5 bg-white text-black text-sm font-medium rounded-lg hover:bg-zinc-200 transition-colors"
+        >
+          Lihat Semua Tool
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+        </Link>
+      </section>
 
-        {/* Grid overlay */}
-        <div className="grid-overlay" />
-
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 pt-14 sm:pt-20 pb-10 sm:pb-14 relative text-center">
-          <div className="feature-pill mb-4 mx-auto anim-fade-up">
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2" />
-            </svg>
-            Cepat &bull; Tanpa Ribet
-          </div>
-
-          <h1 className="hero-title-unique font-extrabold text-white anim-fade-up delay-1">
-            Satu tempat untuk
-            <br />
-            semua alat digital Anda.
-          </h1>
-          <p className="hero-subtitle anim-fade-up delay-2">
-            Unduh video, konversi gambar, dan kelola file dengan cepat &mdash; langsung di browser, tanpa iklan mengganggu.
-          </p>
-
-          <div className="mt-6 anim-fade-up delay-3">
-            <Link href="/tools" className="btn-hero inline-flex items-center gap-2 text-sm">
-              Coba Sekarang
-              <svg className="w-4 h-4 cta-arrow" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+      {/* Tools — simple list, no card grid */}
+      <section className="max-w-3xl mx-auto px-5 pb-16">
+        <div className="border-t border-white/5">
+          {tools.map((tool, i) => (
+            <Link
+              key={tool.href}
+              href={tool.href}
+              className="flex items-center justify-between py-4 border-b border-white/5 hover:bg-white/[0.02] transition-colors -mx-5 px-5"
+            >
+              <div>
+                <span className="text-white text-sm font-medium">{tool.name}</span>
+                <span className="text-zinc-500 text-sm ml-3">{tool.desc}</span>
+              </div>
+              <svg className="w-4 h-4 text-zinc-600" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
               </svg>
             </Link>
-          </div>
+          ))}
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="max-w-2xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
-        <h2 className="text-white text-lg font-semibold mb-5">Pertanyaan Umum</h2>
+      <section className="max-w-3xl mx-auto px-5 pb-16">
+        <h2 className="text-white text-sm font-medium mb-4">FAQ</h2>
         <FaqSection />
       </section>
 
       {/* Footer */}
-      <footer>
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-5">
-          <p className="text-[#6b7280] text-xs text-center">ToolBox &mdash; Free tools for everyone</p>
+      <footer className="border-t border-white/5">
+        <div className="max-w-3xl mx-auto px-5 py-6">
+          <p className="text-zinc-600 text-xs">ToolBox — Built with Next.js</p>
         </div>
       </footer>
     </div>
